@@ -8,7 +8,7 @@
  */
 // Image is set?
 if ( $instance['src'] != '' ) {
-		$img = '<img src="' . $instance['src'] . '"  style="width:100%;"';
+		$img = '<img src="' . $instance['src'] . '"  style="width:100%; height=100%; "';
 	// Alt for image.
 	if($instance['title']!=""){
 		$img .= 'alt="' . esc_attr( $instance['title'] ) . '" title="' .  esc_attr( $instance['title'] ) . '" ';

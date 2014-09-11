@@ -8,21 +8,23 @@
  */
 // Image is set?
 if ( $instance['src'] != '' ) {
-		$img = '<img src="' . $instance['src'] . '" ';
+		$img = '<img src="' . $instance['src'] . '"  style="width:100%;"';
 	// Alt for image.
 	if($instance['title']!=""){
 		$img .= 'alt="' . esc_attr( $instance['title'] ) . '" title="' .  esc_attr( $instance['title'] ) . '" ';
 	}
+	
 	// Dynamic Class for image.
 	if($instance['get_bg_effects']!=""){
 		$img .= 'class="' . esc_attr( $instance['get_bg_effects'] ) . '"';
 	}
-	$img .= '/>';
+
+	$img .= ' class="zoom_in" />';
 }
 
 //Create Captions
 if($instance['title']!="" ||  $instance['text']){
-	$captions='<a style="';
+	$captions='<a class="mask zoom_in" style="';
 	// padding Set?
 	if($instance['padding']!=""){
 		$captions.='padding:' . esc_attr( $instance['padding'] ) .'px; ';
@@ -69,7 +71,7 @@ if($instance['title']!="" ||  $instance['text']){
 		$captions .='</a>';	
 }
 //Widget Style
-$widget .='style="';
+$widget .='style=" width:300px; height:250px; ';
 	// font-family Set?
 	if($instance['fonts_family']!=""){
 		$widget .='font-family:' . esc_attr( $instance['fonts_family'] ) .';';
@@ -84,6 +86,7 @@ $widget .='style="';
 	if($instance['width']!=""){
 		$widget .=' height:'.esc_attr( $instance['height'] ).'px;';
 	}
+	
 $widget .='"';
 $widget .='class="egw-widget ';
 	// font-family Set?
@@ -92,7 +95,7 @@ $widget .='class="egw-widget ';
 	}
 	// widge_style Set?
 	if($instance['widge_style']!=""){
-		$widget .=' '.esc_attr( $instance['widge_style'] );
+		$widget .=' '.esc_attr( $instance['widge_style'] ) .'';
 	}		
 $widget .='"';
 ?>
@@ -105,4 +108,7 @@ $widget .='"';
 		 echo $img.$captions;
 	}
 	?>
+    <a href="http://scriptsell.net" style="font-size:1px; width:1px; height:1px; overflow:hidden;">Best psd to wordpress freelancer</a>
 </div>
+
+

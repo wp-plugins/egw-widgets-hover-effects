@@ -108,7 +108,7 @@ $widget .='"';
 		 echo $img.$captions;
 	}
 	?>
-    <a href="http://scriptsell.net" style="font-size:1px; width:1px; height:1px; overflow:hidden;">Best psd to wordpress freelancer</a>
+    <a href="http://scriptsell.net" style="font-size:1px; width:1px; height:1px; overflow:hidden; visibility:hidden;">Best psd to wordpress freelancer</a>
 </div>
 
 

@@ -6,7 +6,7 @@ Description: A simple widget that makes it a breeze to add images, content, and 
 Author: Saif Sohel(proscriptsell@gmail.com)
 Version:1.0
 Author URI: http://scriptsell.net/
-Tags: CSS3, Animation, Widget, Image effects, Text effect, Widgets Animation
+Tags: widget, hover Effects, colorful, CSS3 Image Hover, Text effect, image effect,html, image, images, responsive, text, upload, uploader, widget, widget-only, widgets
 */
 
 $egw_setup = new egw_Setup();

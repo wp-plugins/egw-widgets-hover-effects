@@ -1,7 +1,7 @@
 ﻿=== EGW Hover Effects ===
 Contributors: Saif Sohel ( scriptsell.net )
 Donate link: http://scriptsell.net/donate
-Tags: widget, hover Effects, colorful, CSS3 Image Hover, Text effect, image effect
+Tags: widget, hover Effects, colorful, CSS3 Image Hover, Text effect, image effect,html, image, images, responsive, text, upload, uploader, widget, widget-only, widgets
 Requires at least: 3.0.1
 Tested up to: 3.9
 Stable tag: 1.1

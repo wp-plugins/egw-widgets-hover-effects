@@ -6,7 +6,11 @@ Description: A simple widget that makes it a breeze to add images, content, and 
 Author: Saif Sohel(proscriptsell@gmail.com)
 Version:1.0
 Author URI: http://scriptsell.net/
-Tags: widget, hover Effects, colorful, CSS3 Image Hover, Text effect, image effect,html, image, images, responsive, text, upload, uploader, widget, widget-only, widgets
+Tags: widget, hover Effects, colorful, CSS3 Image Hover, Text effect, image effect,html, image, images, responsive, text, 
+upload, uploader, widget, widget-only, widgets, plugins, portfolio, thumbnails, web designer, websites,gallery slider, 
+image, image album, image gallery, images, images gallery, media, photo, photo album, photo albums, photo gallery, 
+photogallery, photos, photoset, picture, pictures, responsive wordpress photo gallery, Simple gallery, video gallery, 
+website gallery, widget gallery, wordpress gallery, wordpress gallery plugin, wordpress photo gallery plugin, wp gallery
 */
 
 $egw_setup = new egw_Setup();

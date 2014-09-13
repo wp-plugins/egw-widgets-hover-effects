@@ -231,7 +231,7 @@ To Active Widget All options & effects please <a href="http://www.codegrape.com/
     name="<?php echo $this->get_field_name( 'width' ); ?>"
     type="text"
     value="<?php esc_attr_e( $instance['width'] ); ?>" 
-     /> px
+      readonly="readonly"/> px
 </div>
 <div class="egw-row">
     <label><?php _e( 'display height :', 'egw' ); ?></label>
@@ -240,7 +240,7 @@ To Active Widget All options & effects please <a href="http://www.codegrape.com/
     name="<?php echo $this->get_field_name( 'height' ); ?>"
     type="text"
     value="<?php esc_attr_e( $instance['height'] ); ?>" 
-    /> px
+    readonly="readonly"/> px
 </div>
 To Active Widget All options please <a href="http://www.codegrape.com/item/wordpress-images-text-hover-css3-animation-widget/3063" target="_blank">buy now</a> . <br />
 <br />

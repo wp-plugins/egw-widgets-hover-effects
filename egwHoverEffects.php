@@ -159,22 +159,6 @@ class EGW_Hover_Effects_Widget extends WP_Widget {
 	protected function get_bg_effects() {
 		return apply_filters($this->widget_id . '_bg_effects', array(
 			'fadeout' => __('Fadeout', 'egw'),
-			'blur' => __('Blur', 'egw'),
-			'gray' => __('Gray', 'egw'),
-			'sepia' => __('Sepia', 'egw'),
-			'round' => __('Round', 'egw'),
-			'zoom_in' => __('Zoom in', 'egw'),
-			'zoom_out_outside' => __('Zoom out outside', 'egw'),
-			'zoom_out_inside' => __('Zoom out inside', 'egw'),
-			'rotate_outside' => __('Rotate out outside', 'egw'),
-			'rotate_inside' => __('Rotate out inside', 'egw'),
-			'rotate_vertical' =>__('Rotate vertical', 'egw'),
-			'rotate_horizontal' =>__('Rotate horizontal', 'egw'),
-			'side_left' =>__('Side left', 'egw'),
-			'side_right' =>__('Side Right', 'egw'),
-			'side_top' =>__('Side top', 'egw'),
-			'side_bottom' =>__('Side Bottom', 'egw'),
-			'none' =>__('No effect', 'egw')
 		));
 	}
 
@@ -186,22 +170,6 @@ class EGW_Hover_Effects_Widget extends WP_Widget {
 	protected function get_captions_effects() {
 		return apply_filters($this->widget_id . 'captions_effects', array(
 			'fadein' => __('Fadein', 'egw'),
-			'zoom_in' => __('Zoom in', 'egw'),
-			'zoom_out' =>__('Zoom Out', 'egw'),
-			'rotate_in_outside' =>__('Rotate in outside', 'egw'),
-			'rotate_in_inside' =>__('Rotate in inside', 'egw'),
-			'rotate_vertical' =>__('Rotate vertical', 'egw'),
-			'rotate_horizontal' =>__('Rotate horizontal', 'egw'),
-			'bounce' =>__('Bounce', 'egw'),
-			'side_left' =>__('Side left', 'egw'),
-			'side_right' =>__('Side right', 'egw'),
-			'side_top' =>__('Side top', 'egw'),
-			'side_bottom' =>__('Side bottom', 'egw'),
-			'side_left_half' =>__('Side left half', 'egw'),
-			'side_right_half' =>__('Side Right half', 'egw'),
-			'side_top_half' =>__('Side top half', 'egw'),
-			'side_bottom_half' =>__('Side Bottom half', 'egw'),
-			'none' =>__('No effect', 'egw')
 		));
 	}
 

@@ -14,11 +14,6 @@ if ( $instance['src'] != '' ) {
 		$img .= 'alt="' . esc_attr( $instance['title'] ) . '" title="' .  esc_attr( $instance['title'] ) . '" ';
 	}
 	
-	// Dynamic Class for image.
-	if($instance['get_bg_effects']!=""){
-		$img .= 'class="' . esc_attr( $instance['get_bg_effects'] ) . '"';
-	}
-
 	$img .= ' class="zoom_in" />';
 }
 
@@ -80,12 +75,7 @@ $widget .='style=" width:300px; height:250px; ';
 	if($instance['border_color']!="" && $instance['border_width']!=""){
 		$widget .=' border:'.esc_attr( $instance['border_width'] ).'px solid #'.esc_attr( $instance['border_color'] ).';';
 	}
-	if($instance['width']!=""){
-		$widget .=' width:'.esc_attr( $instance['width'] ).'px;';
-	}
-	if($instance['width']!=""){
-		$widget .=' height:'.esc_attr( $instance['height'] ).'px;';
-	}
+	
 	
 $widget .='"';
 $widget .='class="egw-widget ';

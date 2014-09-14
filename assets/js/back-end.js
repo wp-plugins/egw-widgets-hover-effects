@@ -1,191 +1,184 @@
 jQuery(document).ready(function() {
 	
 	egw = {
-		selectImage: function(id) {
-			
-			// Switch to our custom media library.
-			wp.media.view.MediaFrame.Select = egw.egwMediaLibrary;
-			
-			var mediaFrame = wp.media({
-				title : 'EGW Hover Effects ',
-				multiple : false,
-				type: 'post',
-				library : { type : 'image' },
-				button : { text : objectL10n.insertIntoWidget }
-			});
-
-			// Media library closed.
-			mediaFrame.on('close', function() {
-				// Restore original media library.
-				wp.media.view.MediaFrame.Select = egw.originalMediaLibrary;
-  			});
-			
-			// Image was selected from Media Library.
-			mediaFrame.on('insert', function() {
-				var image = mediaFrame.state().get('selection').toJSON();
-				egw.imageSelected(
-						id,
-						image[0],
-						jQuery('select.size', mediaFrame.el).val()
-					);
-			});
-			
-			// Image was selected by URL.
-			mediaFrame.on('select', function() {
-				egw.imageEmbeded(
-						id,
-						jQuery('label.embed-url input', mediaFrame.el).val(),
-						jQuery('label.setting.alt-text input', mediaFrame.el).val()
-					);
-			});
-			
-			mediaFrame.open();
-		},
-		removeImage: function(id) {
-			jQuery(id + ' .remove-image').hide();
-			jQuery(id + ' .img-thumb').html('');
-			jQuery(id + ' .src').attr('value', '');
-			jQuery(id + ' .select-image').show();
-		},
-				
-		imageSelected: function(id, image, selectedSize) {
-			objSize = image.sizes[selectedSize];
-			jQuery(id + ' .remove-image').show();
-			jQuery(id + ' .img-thumb').html('<img src="' + objSize.url + '" style="max-width: 100%;">');
-			jQuery(id + ' .src').attr('value', objSize.url);
-			jQuery(id + ' .alt').attr('value', image.alt);
-			jQuery(id + ' .select-image').hide();
-		},
-		init: function() {
+		firstImageOpen: true,
 		
-			// Keep a copy of original image library.
-			try {
-				this.originalMediaLibrary = wp.media.view.MediaFrame.Select;
-				this.egwMediaLibrary = this.createMediaLibrary();
-				
-				
-			} catch(e) {
-				console.log('Unable to load Media Library');
-			}
-			
-		},
-		
-		createMediaLibrary: function() {
-			return wp.media.view.MediaFrame.Select.extend({
-				initialize: function() {
-					wp.media.view.MediaFrame.prototype.initialize.apply(this, arguments);
+		calcAspectRatio: function(id, axis) {
+			if (jQuery(id + ' .keep-aspect-ratio').prop('checked')) {
+				var display_width = jQuery(id + ' .display-width').attr('value');
+				var display_height = jQuery(id + ' .display-height').attr('value');
+				var original_width = jQuery(id + ' .original-width').attr('value');
+				var original_height = jQuery(id + ' .original-height').attr('value');
+				var aspect_ratio = 0;
 
-					_.defaults(this.options, {
-						multiple: true,
-						editing: false,
-						state: 'insert'
-					});
-
-					this.createStates();
-					this.bindHandlers();
-					
-					
-				},
-				createStates: function() {
-					var options = this.options;
-
-					// Add the default states.
-					this.states.add([
-						// Main states.
-						new wp.media.controller.Library({
-							id: 'insert',
-							title: objectL10n.insertMedia,
-							priority: 20,
-							toolbar: 'main-insert',
-							filterable: 'image',
-							library: wp.media.query(options.library),
-							multiple: options.multiple ? 'reset' : false,
-							editable: true,
-							// If the user isn't allowed to edit fields,
-							// can they still edit it locally?
-							allowLocalEdits: true,
-							// Show the attachment display settings.
-							displaySettings: true,
-							// Update user settings when users adjust the
-							// attachment display settings.
-							displayUserSettings: true
-						}),
-						// Embed states.
-						new wp.media.controller.Embed(),
-					]);
-
-
-					if (wp.media.view.settings.post.featuredImageId) {
-						this.states.add(new wp.media.controller.FeaturedImage());
-					}
-				},
-				bindHandlers: function() {
-					// from Select
-					this.on('router:create:browse', this.createRouter, this);
-					this.on('router:render:browse', this.browseRouter, this);
-					this.on('content:create:browse', this.browseContent, this);
-					this.on('content:render:upload', this.uploadContent, this);
-					this.on('toolbar:create:select', this.createSelectToolbar, this);
-					//
-
-					this.on('menu:create:gallery', this.createMenu, this);
-					this.on('toolbar:create:main-insert', this.createToolbar, this);
-					this.on('toolbar:create:main-gallery', this.createToolbar, this);
-					this.on('toolbar:create:featured-image', this.featuredImageToolbar, this);
-					this.on('toolbar:create:main-embed', this.mainEmbedToolbar, this);
-
-					var handlers = {
-						toolbar: {
-							'main-insert': 'mainInsertToolbar'
-						}
-					};
-
-					_.each(handlers, function(regionHandlers, region) {
-						_.each(regionHandlers, function(callback, handler) {
-							this.on(region + ':render:' + handler, this[ callback ], this);
-						}, this);
-					}, this);
-				},
-			
-				
-				// Toolbars
-				selectionStatusToolbar: function(view) {
-					var editable = this.state().get('editable');
-
-					view.set('selection', new wp.media.view.Selection({
-						controller: this,
-						collection: this.state().get('selection'),
-						priority: -40,
-						// If the selection is editable, pass the callback to
-						// switch the content mode.
-						editable: editable && function() {
-							this.controller.content.mode('edit-selection');
-						}
-					}).render());
-				},
-				mainInsertToolbar: function(view) {
-					var controller = this;
-
-					this.selectionStatusToolbar(view);
-
-					view.set('insert', {
-						style: 'primary',
-						priority: 80,
-						text: objectL10n.selectImage,
-						requires: {selection: true},
-						click: function() {
-							var state = controller.state(),
-									selection = state.get('selection');
-
-							controller.close();
-							state.trigger('insert', selection).reset();
-						}
-					});
+				if (this.isValidInt(display_width) && axis == 'x') {
+					aspect_ratio = original_width / original_height;
+					jQuery(id + ' .display-height').attr('value', Math.round(display_width / aspect_ratio));
 				}
 
-			});
+				if (this.isValidInt(display_height) && axis == 'y') {
+					aspect_ratio = original_height / original_width;
+					jQuery(id + ' .display-width').attr('value', Math.round(display_height / aspect_ratio));
+				}
+
+				if (display_width == '' && axis == 'x') {
+					jQuery(id + ' .display-height').attr('value', '');
+				}
+
+				if (display_height == '' && axis == 'y') {
+					jQuery(id + ' .display-width').attr('value', '');
+				}
+			}
+		},
+
+		closeTextEditor: function(evt) {
+			evt.preventDefault();
+			
+			if (evt.data.save == true) {
+				
+				if (jQuery('#wp-egw-tmce-wrap').hasClass('tmce-active')) {
+					content = tinyMCE.get('egw-tmce').getContent();
+				} else {
+					content = window.switchEditors.wpautop(tinyMCE.DOM.get('egw-tmce').value);
+				}
+				
+				jQuery(egw.editorForId + ' .text').attr('value', content);
+				jQuery(egw.editorForId + ' .text-preview').html(content.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, ' '));
+			}
+			
+			jQuery('#egw-te-backdrop').css('display', 'none');
+			jQuery('#egw-te').css('display', 'none');
+		},
+		
+		displaySize: function(id, val) {
+			if (val == 'fixed') {
+				jQuery(id + ' div.fixed-size').slideDown(200);
+			} else {
+				jQuery(id + ' div.fixed-size').slideUp(200);
+			}
+		},
+		
+		imageEmbeded: function(id, image) {
+			jQuery(id + ' .display-width').attr('value', image.width);
+			jQuery(id + ' .display-height').attr('value', image.height);
+			jQuery(id + ' .original-width').attr('value', image.width);
+			jQuery(id + ' .original-height').attr('value', image.height);
+			jQuery(id + ' .remove-image-link').show();
+			jQuery(id + ' .img-thumb').html('<img src="' + image.url + '" style="max-width: 100%;">');
+			jQuery(id + ' .src').attr('value', image.url);
+			jQuery(id + ' .alt').attr('value', image.alt);
+		},
+		
+		imageSelected: function(id, selectedSize, image) {
+			imageSize = image.sizes[selectedSize];
+			
+			jQuery(id + ' .remove-image-link').show();
+			jQuery(id + ' .img-thumb').html('<img src="' + imageSize.url + '" style="max-width: 100%;">');
+			jQuery(id + ' .src').attr('value', imageSize.url);
+			jQuery(id + ' .display-width').attr('value', imageSize.width);
+			jQuery(id + ' .display-height').attr('value', imageSize.height);
+			jQuery(id + ' .original-width').attr('value', imageSize.width);
+			jQuery(id + ' .original-height').attr('value', imageSize.height);
+			jQuery(id + ' .alt').attr('value', image.alt);
+
+			if (image.title != '' && jQuery(id + ' .title').attr('value') == '') {
+				jQuery(id + ' .title').attr('value', image.title);
+			}
+		},
+		
+		init: function() {
+			// Bind editor buttons.
+			jQuery('#egw-te-backdrop').bind('click', {save: false}, this.closeTextEditor);
+			jQuery('.egw-te-close').bind('click', {save: false}, this.closeTextEditor);
+			jQuery('.egw-te-btn-discard').bind('click', {save: false}, this.closeTextEditor);
+			jQuery('.egw-te-btn-save').bind('click', {save: true}, this.closeTextEditor);
+		},
+		
+		isValidInt: function(val) {
+			var intRegex = /^\d+$/;
+			return intRegex.test(val);
+		},
+		
+		// Keeps track of aspect ratio checkbox.
+		keepAspectRatio: function(id) {
+			if (jQuery(id + ' .keep-aspect-ratio').prop('checked')) {
+				this.calcAspectRatio(id, 'x');
+			}
+		},
+		
+		mediaClose: function() {
+			// Restore original functions.
+			wp.media.editor.send.attachment = egw.insert;
+			wp.media.string.image = egw.embed;
+		},
+		
+		openTextEditor: function(id) {
+			egw.editorForId = id;
+			
+			// Ugly way of switching to WYSIWYG view before showing the editor (don't see a way to set HTML content manually).
+			if (jQuery('#wp-egw-tmce-wrap').hasClass('html-active')) {
+				jQuery('#egw-tmce-tmce').click();
+			}
+			
+			// Set data to tmce.
+			tinyMCE.get('egw-tmce').setContent(jQuery(id + ' .text').attr('value'));
+			
+			// Display editor.
+			jQuery('#egw-te').css('display', 'block');
+			jQuery('#egw-te-backdrop').css('display', 'block');
+		},
+		
+		removeImage: function(id) {
+			jQuery(id + ' .remove-image-link').hide();
+			jQuery(id + ' .img-thumb').html('');
+			jQuery(id + ' .src').attr('value', '');
+			jQuery(id + ' .display-width').attr('value', '');
+			jQuery(id + ' .display-height').attr('value', '');
+			jQuery(id + ' .original-width').attr('value', '');
+			jQuery(id + ' .original-height').attr('value', '');
+		},
+		
+		selectImage: function(id) {
+			
+			// Backup original functions.
+			egw.insert = wp.media.editor.send.attachment;
+			egw.embed = wp.media.string.image;
+						
+			// Open insert media lightbox.
+			if ( typeof wp !== 'undefined' && wp.media && wp.media.editor ) {
+				wp.media.editor.open(id, {multiple: false, title: 'HW Image Widget', type: 'image'});
+			}
+
+			// Image was selected from Media Library.
+			wp.media.editor.send.attachment = function(selection, image) {
+				egw.imageSelected(id, selection.size, image)
+				egw.mediaClose();
+			};
+
+			// Image was selected by URL.
+			wp.media.string.image = function (image) {
+				egw.imageEmbeded(id, image);
+				egw.mediaClose();
+			}
+			
+			// Lightbox was closed, make sure to restore backed up functions.
+			if (egw.firstImageOpen) {
+				wp.media.frame.on('escape', function() {
+					egw.mediaClose();
+				});
+			}
+			
+			egw.firstImageOpen = false;
+		},
+		
+		target: function(id) {
+			if (jQuery(id + ' .target-option').val() != 'other') {
+				jQuery(id + ' .target-name').hide();
+			} else {
+				jQuery(id + ' .target-name').show();
+			}
 		}
 	};
 	egw.init();
-	
 });
+

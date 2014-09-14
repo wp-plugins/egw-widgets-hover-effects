@@ -8,7 +8,7 @@
  */
 // Image is set?
 if ( $instance['src'] != '' ) {
-		$img = '<img src="' . $instance['src'] . '"  style="width:100%; height=100%; "';
+		$img = '<img src="' . $instance['src'] . '"  ';
 	// Alt for image.
 	if($instance['title']!=""){
 		$img .= 'alt="' . esc_attr( $instance['title'] ) . '" title="' .  esc_attr( $instance['title'] ) . '" ';
@@ -66,7 +66,7 @@ if($instance['title']!="" ||  $instance['text']){
 		$captions .='</a>';	
 }
 //Widget Style
-$widget .='style=" width:300px; height:250px; ';
+$widget .='style="';
 	// font-family Set?
 	if($instance['fonts_family']!=""){
 		$widget .='font-family:' . esc_attr( $instance['fonts_family'] ) .';';
@@ -98,7 +98,7 @@ $widget .='"';
 		 echo $img.$captions;
 	}
 	?>
-    <a href="http://scriptsell.net" style="font-size:1px; width:1px; height:1px; overflow:hidden; visibility:hidden;">Best psd to wordpress freelancer</a>
+   
 </div>
 
 

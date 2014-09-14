@@ -70,9 +70,13 @@ jQuery(document).ready(function() {
 		},
 		
 		imageSelected: function(id, selectedSize, image) {
-			imageSize = image.sizes[selectedSize];
-			
-			jQuery(id + ' .remove-image-link').show();
+			objSize = image.sizes[selectedSize];
+			jQuery(id + ' .remove-image').show();
+			jQuery(id + ' .img-thumb').html('<img src="' + objSize.url + '" style="max-width: 100%;">');
+			jQuery(id + ' .src').attr('value', objSize.url);
+			jQuery(id + ' .alt').attr('value', image.alt);
+			jQuery(id + ' .select-image').hide();
+			/*jQuery(id + ' .remove-image-link').show();
 			jQuery(id + ' .img-thumb').html('<img src="' + imageSize.url + '" style="max-width: 100%;">');
 			jQuery(id + ' .src').attr('value', imageSize.url);
 			jQuery(id + ' .display-width').attr('value', imageSize.width);
@@ -83,7 +87,7 @@ jQuery(document).ready(function() {
 
 			if (image.title != '' && jQuery(id + ' .title').attr('value') == '') {
 				jQuery(id + ' .title').attr('value', image.title);
-			}
+			}*/
 		},
 		
 		init: function() {
@@ -129,13 +133,18 @@ jQuery(document).ready(function() {
 		},
 		
 		removeImage: function(id) {
-			jQuery(id + ' .remove-image-link').hide();
+			/*jQuery(id + ' .remove-image-link').hide();
 			jQuery(id + ' .img-thumb').html('');
 			jQuery(id + ' .src').attr('value', '');
 			jQuery(id + ' .display-width').attr('value', '');
 			jQuery(id + ' .display-height').attr('value', '');
 			jQuery(id + ' .original-width').attr('value', '');
-			jQuery(id + ' .original-height').attr('value', '');
+			jQuery(id + ' .original-height').attr('value', '');*/
+			
+			jQuery(id + ' .remove-image').hide();
+			jQuery(id + ' .img-thumb').html('');
+			jQuery(id + ' .src').attr('value', '');
+			jQuery(id + ' .select-image').show();
 		},
 		
 		selectImage: function(id) {

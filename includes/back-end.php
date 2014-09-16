@@ -50,7 +50,7 @@ To Active Widget All options & effects please <a href="http://www.codegrape.com/
 		
 	</div>
     <div class="egw-row">
-        <input type="checkbox" name="<?php echo $this->get_field_name( 'new_window' ); ?>" id="<?php echo $this->get_field_id( 'new_window' ); ?>" <?php if($instance['new_window']!=""):?> checked="checked"<?php endif;?>>
+        <input type="checkbox" name="<?php echo $this->get_field_name( 'new_window' ); ?>" id="<?php echo $this->get_field_id( 'new_window' ); ?>" <?php if($instance['new_window']!=""):?> checked="checked"<?php endif;?>  readonly="readonly"> 
         <?php _e( 'Open in new window?', 'egw' ); ?>
     </div>
 <fieldset class="style_wrp"><legend> <?php _e( 'Widget Style and effects', 'egw' ); ?></legend>
@@ -107,7 +107,7 @@ To Active Widget All options & effects please <a href="http://www.codegrape.com/
     name="<?php echo $this->get_field_name( 'padding' ); ?>"
     type="text"
     value="<?php esc_attr_e( $instance['padding'] ); ?>" 
-    />
+     readonly="readonly"/>
      px
 </div>   
 <div class="egw-row">
@@ -231,7 +231,7 @@ To Active Widget All options & effects please <a href="http://www.codegrape.com/
     name="<?php echo $this->get_field_name( 'width' ); ?>"
     type="text"
     value="<?php esc_attr_e( $instance['width'] ); ?>" 
-      readonly="readonly"/> px
+      /> px
 </div>
 <div class="egw-row">
     <label><?php _e( 'display height :', 'egw' ); ?></label>
@@ -240,7 +240,7 @@ To Active Widget All options & effects please <a href="http://www.codegrape.com/
     name="<?php echo $this->get_field_name( 'height' ); ?>"
     type="text"
     value="<?php esc_attr_e( $instance['height'] ); ?>" 
-    readonly="readonly"/> px
+   /> px
 </div>
 To Active Widget All options please <a href="http://www.codegrape.com/item/wordpress-images-text-hover-css3-animation-widget/3063" target="_blank">buy now</a> . <br />
 <br />

@@ -4,7 +4,7 @@
  */
 $pick_class="color-picker";
 ?> 
-To Active Widget All options & effects please <a href="http://www.codegrape.com/item/wordpress-images-text-hover-css3-animation-widget/3063" target="_blank">Buy </a> only at $5 . <br />
+To Active Widget All options & effects please <a href="http://www.codegrape.com/item/wordpress-images-text-hover-css3-animation-widget/3063?ref=proscriptsell" target="_blank">Buy </a> only at $5 . <br />
 <br />
 <div id="<?php echo $div_id; ?>" class="<?php esc_attr_e( $this->widget_id ); ?> egw-widget">
 	<div class="widget-images-effects egw-row">
@@ -242,7 +242,7 @@ To Active Widget All options & effects please <a href="http://www.codegrape.com/
     value="<?php esc_attr_e( $instance['height'] ); ?>" 
    /> px
 </div>
-To Active Widget All options please <a href="http://www.codegrape.com/item/wordpress-images-text-hover-css3-animation-widget/3063" target="_blank">buy now</a> . <br />
+To Active Widget All options please <a href="http://www.codegrape.com/item/wordpress-images-text-hover-css3-animation-widget/3063?ref=proscriptsell" target="_blank">buy now</a> . <br />
 <br />
     </fieldset>
 </div>

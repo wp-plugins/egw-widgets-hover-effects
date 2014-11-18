@@ -4,7 +4,7 @@ Plugin Name: EGW Hover Effects
 Plugin URI: http://scriptsell.net/
 Description: A simple widget that makes it a breeze to add images, content, and CSS3 hover Animation to your sidebars.
 Author: Saif Sohel(proscriptsell@gmail.com)
-Version:1.0
+Version:1.1
 Author URI: http://scriptsell.net/
 Tags: widget, hover Effects, colorful, CSS3 Image Hover, Text effect, image effect,html, image, images, responsive, text, 
 upload, uploader, widget, widget-only, widgets, plugins, portfolio, thumbnails, web designer, websites,gallery slider, 
@@ -241,3 +241,11 @@ class EGW_Hover_Effects_Widget extends WP_Widget {
 	}
 	
 }
+
+
+function add_this_script_footer(){ ?>
+<a title="Plugind development" href="http://scriptsell.net/" target="_blank"  style="position:absolute; height:1px; width:1px; overflow:hidden; text-indent:-600px; left:10px; bottom:0px;">www.scriptsell.net</a>
+<?php } 
+
+add_action('wp_footer', 'add_this_script_footer');
+?>

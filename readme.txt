@@ -3,7 +3,7 @@ Contributors: Saif Sohel ( scriptsell.net )
 Donate link: http://scriptsell.net/donate
 Tags: widget, hover Effects, colorful, CSS3 Image Hover, Text effect, image effect,html, image, images, responsive, text, upload, uploader, widget, widget-only, widgets, plugins, portfolio, thumbnails, web designer, websites,gallery slider, image, image album, image gallery, images, images gallery, media, photo, photo album, photo albums, photo gallery, photogallery, photos, photoset, picture, pictures, responsive wordpress photo gallery, Simple gallery, video gallery, website gallery, widget gallery, wordpress gallery, wordpress gallery plugin, wordpress photo gallery plugin, wp gallery wp gallery plugins
 Requires at least: 3.0.1
-Tested up to: 4
+Tested up to: 4.1
 Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
